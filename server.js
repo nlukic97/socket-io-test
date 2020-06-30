@@ -2,14 +2,16 @@
 
 const { on } = require('process');
 
-// var app = express();
-var app = require('express')(); 
+var express = require('express');
+var app = express(); 
 var http = require('http').createServer(app);
 var io = require('socket.io')(http)
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html'); //zasto mora ovo __dirname?
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + '/public/index.html'); //zasto mora ovo __dirname?
+// });
+
+app.use(express.static('./public'))
 
 io.on('connection',(socket)=>{
   console.log('a new user connected.')
